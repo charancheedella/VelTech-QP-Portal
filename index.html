@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VelTech QPs</title>
+    <link rel="stylesheet" href="style.css">
+        <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js" type="module"></script>
+
+</head>
+<body>
+
+<!-- Top Navigation Bar -->
+<div class="top-bar">
+    <div class="logo-box">
+        <a href=""><img src="logo.png" alt="Logo" class="logo-img"></a>
+        <span class="logo-text">|&nbsp; VelTech Question Papers</span>
+    </div>
+
+    <div class="top-right">
+        <input id="searchInput" type="text" placeholder="Search Paper">
+        <button id="themeToggle" class="theme-btn">🌙</button>
+    </div>
+</div>
+
+
+
+<div class="dept-dropdown-box">
+    <select id="deptDropdown" onchange="loadDept(this.value)">
+        <option value="">Select Your Department</option>
+        <option value="FME">First Year</option>
+        <option value="CSE">CSE</option>
+        <option value="ECE">ECE</option>
+        <option value="CSD">CSD</option>
+        <option value="BIOTECH">Biotech</option>
+        <option value="EEE">EEE</option>
+        <option value="MECH">Mechanical</option>
+        <option value="FOUNDATION">Foundation</option>
+        <option value="OPEN ELECTIVE">Open Elective</option>
+    </select>
+</div>
+
+<!-- Default Center Message -->
+<div id="default-message-index" class="default-message-index">
+    <div class="image-content-index">
+      <dotlottie-wc src="https://lottie.host/560b69df-34ab-4460-b982-dd269d0737f8/WU20CZb82K.lottie" style="width: 500px;height: 400px" speed="1" autoplay loop class="lotties"></dotlottie-wc>
+    </div>
+    <h2 class="default-title-index">Welcome to the hunt of Question Papers</h2>
+    <p class="default-subtitle-index">
+       Your one-stop destination for all semester question papers - simple, fast & student-friendly. <br> Please select on any department above or search using the bar at the top!
+    </p>
+</div>
+<div id="papers"></div>
+
+
+
+<!-- Loader -->
+<div id="loader" class="loader hidden">
+    <div class="dot red"></div>
+    <div class="dot yellow"></div>
+    <div class="dot green"></div>
+</div>
+
+
+
+<section class="contact-section" id="contact">
+  <h1 class="contact-title">Contact & Support</h1>
+
+  <div class="contact-container">
+
+    <!-- Left Side -->
+    <div class="contact-info">
+      
+    <h2 class="contact-heading">Explore My Creatives</h2>
+    <ul class="contact-list">
+        <li><a href="https://charancheedella.github.io/Attendance_calculator/" target="_blank">Attendance Calculator</a></li>
+        <li><a href="https://wonderlands-g3ze.onrender.com/" target="_blank">Wonder Lands</a></li>
+        <li><a href="https://charancheedella.github.io/Simon-Says-Game/"target="_blank">Simon Says Game</a></li>
+        <li><a href="https://charancheedella.github.io/Spotify-clone/"target="_blank">Spotify Clone</a></li>
+    </ul>
+
+    <h3 class="support-title">For any paper related queries</h3>
+      <a href="https://www.instagram.com/veltech_vaallam_andi?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="support-mention" target="_blank">@veltech_vaallam_andi</a>
+    </div>
+
+    <!-- Right Side -->
+    <div class="contact-info">
+      
+    <h2 class="contact-heading">Know More About Me</h2>
+    <ul class="contact-list">
+        <li><a href="mailto:charancheedella123@gmail.com">charancheedella123@gmail.com</a></li>
+        <li> <a href="https://www.linkedin.com/in/charan-cheedella" target="_blank" rel="noopener">
+            Linkedin/charan-cheedella
+          </a></li>
+        <li><a href="https://github.com/charancheedella" target="_blank" rel="noopener">
+            GitHub/charancheedella
+          </a></li>
+                  <li><a href="https://www.instagram.com/charancheedella/" target="_blank" rel="noopener">
+            Instagram/charancheedella
+          </a></li>
+    </ul>
+
+    <a href="https://www.charancheedella.xyz" 
+         target="_blank" 
+         class="contact-button">
+         Check Portfolio
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<div class="copyright">
+    Designed & Developed by Venkata Sai Charan Cheedella <br>
+    © 2025 VelTech QP Portal
+</div>
+
+
+<script src="app.js"></script>
+</body>
+</html>
