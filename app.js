@@ -13,7 +13,6 @@ const papersContainer = document.getElementById("papers");
 const searchInput = document.getElementById("searchInput");
 const themeToggle = document.getElementById("themeToggle");
 
-
 /* Loader control */
 function setLoader(show) {
     loader.classList.toggle("hidden", !show);
@@ -29,11 +28,18 @@ async function loadData() {
 
         papersData = rows
             .filter(r => r.trim() !== "")
-            .map((r, i, arr) => {
-                const [subject, dept, link] = r.split(",");
+            .map((r) => {
+                const parts = r.split(",");
+
+                const subject = parts[0] || "";
+                const dept = parts[1] || "";
+                const years = parts[2] || "";
+                const link = parts.slice(3).join(",") || "";   // safe for commas
+
                 return {
                     subject: subject.trim(),
                     dept: dept.trim(),
+                    years: years ? years.trim() : "—",
                     link: link.trim(),
                 };
             });
@@ -45,48 +51,50 @@ async function loadData() {
 /* Render papers */
 function render(title, data) {
     papersContainer.innerHTML = "";
+
     if (title) {
         papersContainer.innerHTML += `<div class="section-title">${title}</div>`;
     }
 
-if (!data.length) {
-    papersContainer.innerHTML += `
-        <div class="no-papers-box">
-            <div class="no-papers-lottie">
-<dotlottie-wc
-  src="https://lottie.host/0fe35754-a246-4f6c-9799-2d58d0e7a785/XQZGvmrySm.lottie"
-  style="width: 400px;height: 300px"
-  autoplay
-  loop
-></dotlottie-wc>
+    if (!data.length) {
+        papersContainer.innerHTML += `
+            <div class="no-papers-box">
+                <div class="no-papers-lottie">
+                    <dotlottie-wc
+                      src="https://lottie.host/0fe35754-a246-4f6c-9799-2d58d0e7a785/XQZGvmrySm.lottie"
+                      style="width: 400px;height: 300px"
+                      autoplay
+                      loop
+                    ></dotlottie-wc>
+                </div>
+
+                <p class="no-papers-text">
+                    No papers uploaded for this department yet.<br>
+                    Hang tight - They’re on the way ❤️
+                </p>
             </div>
-
-            <p class="no-papers-text">
-                No papers uploaded for this department yet.<br>Hang tight - They’re on the way ❤️
-            </p>
-        </div>
-    `;
-    return;
-}
-
+        `;
+        return;
+    }
 
     data.forEach(p => {
         papersContainer.innerHTML += `
             <div class="paper-item">
-    <div class="paper-left">
-        <div class="paper-title">${p.subject}</div>
-        <div class="paper-meta">${p.dept}</div>
-    </div>
-    <a href="${p.link}" target="_blank">View Paper</a>
-</div>
-
+                <div class="paper-left">
+                    <div class="paper-title">${p.subject}</div>
+                    <div class="paper-meta">${p.dept} | ${p.years}</div>
+                </div>
+                <a href="${p.link}" target="_blank">View Paper</a>
+            </div>
         `;
     });
 }
 
 /* Load department */
 async function loadDept(dept) {
-     if (dept === "") {
+
+    // If "Select Your Department" is chosen → go to home
+    if (dept === "") {
         currentDept = null;
         papersContainer.innerHTML = "";
         document.getElementById("default-message-index").classList.remove("hidden");
@@ -100,17 +108,13 @@ async function loadDept(dept) {
     await loadData();
     const filtered = papersData.filter(p => p.dept === dept);
     render(`${dept} Question Papers`, filtered);
-
-    // document.getElementById("papers").scrollIntoView({ behavior: "smooth" });
 }
-
-
 
 /* Search functionality */
 searchInput.addEventListener("input", async () => {
     const term = searchInput.value.toLowerCase();
 
-    // Hide default message while searching
+    // Hide default screen when searching
     document.getElementById("default-message-index").classList.add("hidden");
 
     await loadData();
@@ -121,6 +125,7 @@ searchInput.addEventListener("input", async () => {
     }
 
     let filtered;
+
     if (currentDept) {
         filtered = papersData.filter(p =>
             p.dept === currentDept &&
@@ -136,18 +141,16 @@ searchInput.addEventListener("input", async () => {
     }
 });
 
-
 /* Theme toggle */
 themeToggle.addEventListener("click", () => {
     document.body.classList.toggle("dark");
 
     if (document.body.classList.contains("dark")) {
-        themeToggle.textContent = "☀️"; // show sun — switch to light
+        themeToggle.textContent = "☀️"; // switch to light
     } else {
-        themeToggle.textContent = "🌙"; // show moon — switch to dark
+        themeToggle.textContent = "🌙"; // switch to dark
     }
 });
-
 
 /* Initial load */
 loadData();
