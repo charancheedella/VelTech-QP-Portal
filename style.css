@@ -216,14 +216,16 @@ body.dark .paper-item a:hover {
     height: 12rem;
     flex-direction: column;
     padding: 17px 26px;
+    padding-bottom: 3rem;
+    padding-top: 3rem;
 }
 
 .logo-img {
-    height: 5rem;
+    height: 5.4rem;
 }
 
 .logo-text {
-    font-size: 2rem;
+    font-size: 2.3rem;
 }
 
 /* Right Section (Search + Theme) */
@@ -268,14 +270,14 @@ body.dark .paper-item a:hover {
 
 /* Papers Section */
 #papers {
-    margin-top: 5rem;
+    margin-top: 4rem;
     max-width: 80%;
     margin-left: auto;
     margin-right: auto;
 }
 
 .section-title {
-    font-size: 2.4rem;
+    font-size: 2.8rem;
     margin-bottom: 3rem;
     font-weight: 550;
 }
@@ -300,14 +302,14 @@ body.dark .paper-item a:hover {
 }
 
 .paper-title {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 500;
     margin: 1rem 0;
     margin-right: 2rem;
 }
 
 .paper-meta {
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: rgb(109, 109, 109);
     margin-bottom: 1rem;
 }
@@ -323,9 +325,8 @@ body.dark .paper-item a:hover {
     text-decoration: none;
     transition: 0.3s ease;
     white-space: nowrap;
-    font-size: 1.3rem;
+    font-size: 1.7rem;
 }
-
 }
 
 
@@ -476,12 +477,12 @@ body.dark .paper-item a:hover {
 
     /* Contact Section */
     .contact-section {
-        margin-top: 4rem;
+        margin-top: 10rem;
         padding: 2rem 1rem;
     }
 
     .contact-title {
-        font-size: 2rem;
+        font-size: 3.7rem;
     }
 
     .contact-container {
@@ -497,32 +498,36 @@ body.dark .paper-item a:hover {
     }
 
     .contact-heading {
-        font-size: 1.7rem;
-        margin-top: 2.3rem;
+        font-size: 2.5rem;
+        margin-top: 4rem;
     }
 
     .contact-list li {
-        font-size: 1.5rem;
+        font-size: 2.25rem;
+        line-height: 4rem;
     }
 
     .contact-button {
-        width: 40%;
-        font-size: 1.5rem;
+        width: 50%;
+        font-size: 2.3rem;
+        margin-top: 4rem;
     }
     .support-title {
-    font-size: 1.7rem;
-    margin-top: 2rem;
+    font-size: 2.5rem;
+    margin-top: 4rem;
     font-family: "Cormorant Garamond", serif;
     margin-bottom: 1rem;
     }
     .support-mention{
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 2.25rem;
     }
     /* Copyright */
     .copyright {
-        font-size: 0.8rem;
+        font-size: 1.3rem;
         padding: 1.5rem 1rem;
+        line-height: 3rem;
+        padding-top: 5rem;
     }
 }
 
@@ -637,29 +642,30 @@ body.dark .no-papers-text {
         margin-top: 10rem;
     }
     /* Default Message */
-    .default-message {
+    .default-message-index {
         text-align: center;
         margin-top: 2rem;
         padding: 0 1.5rem;
     }
 
-    .default-title {
-        font-size: 2rem;
-        margin-top: 2rem;
+    .default-title-index {
+        font-size: 3rem;
+        margin-top: 5rem;
         font-weight: 700;
         padding: 0 1.5rem;
     }
 
-    .default-subtitle {
-        font-size: 1.2rem;
+    .default-subtitle-index {
+        font-size: 1.8rem;
         margin-top: 0.8rem;
         color: #666;
-        line-height: 1.8rem;
+        line-height: 3rem;
         padding: 0 1.5rem;
         padding: 0 2rem;
+        text-align:center;
     }
 
-    .image-content {
+    .image-content-index {
         margin-top: 1rem;
         display: flex;
         justify-content: center;
@@ -679,10 +685,10 @@ body.dark .no-papers-text {
     }
 
     .no-papers-text {
-        font-size: 1.3rem;
-        margin-top: 1.2rem;
+        font-size: 2.2rem;
+        margin-top: 2rem;
         color: #666;
-        line-height: 2rem;
+        line-height: 4rem;
     }
 }
 
@@ -710,8 +716,8 @@ body.dark .no-papers-text {
 #deptDropdown:hover {
     background: var(--search-bg);
 }
+
 @media(max-width:1000px){
-    @media (max-width: 1000px) {
 
     .dept-dropdown-box {
         display: flex;
@@ -732,12 +738,14 @@ body.dark .no-papers-text {
         outline: none;
         cursor: pointer;
         transition: 0.2s ease;
-        margin-bottom: 4rem;
+        margin-bottom: 6rem;
+        font-size: 2rem;
     }
 
     #deptDropdown:hover {
         background: var(--search-bg);
     }
-}
-
+    body {
+        padding-top: 14rem;
+    }
 }
