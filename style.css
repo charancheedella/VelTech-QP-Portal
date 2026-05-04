@@ -355,7 +355,7 @@ body.dark .paper-item a:hover {
     }
 
     .logo-text {
-        font-size: 1.1rem;
+        font-size: 0.9rem;
     }
 
     /* Right Section (Search + Theme) */
@@ -376,7 +376,8 @@ body.dark .paper-item a:hover {
         margin: 0;
     }
 
-    .theme-btn, #favoritesBtn {
+    .theme-btn,
+    #favoritesBtn {
         font-size: 1.1rem;
         padding: 8px 12px;
         border: 1px solid var(--border);
@@ -770,6 +771,7 @@ body.dark .paper-item a:hover {
 
 
 @media(max-width: 1000px) {
+
     /* Contact Section */
     .contact-section {
         margin-top: 3rem;
@@ -938,6 +940,7 @@ body.dark .no-papers-text {
    MOBILE FIX — DEFAULT + ERROR MESSAGE
    ============================================ */
 @media (max-width: 1000px) {
+
     /* Default Message */
     .default-message-index {
         margin-top: 1rem;
