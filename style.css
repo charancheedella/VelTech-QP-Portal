@@ -95,7 +95,7 @@ textarea {
 }
 
 .logo-text {
-    font-size: 1.05rem;
+    font-size: 1rem;
     font-weight: 600;
     color: #000;
 }
@@ -355,7 +355,7 @@ body.dark .paper-item a:hover {
     }
 
     .logo-text {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
     }
 
     /* Right Section (Search + Theme) */
