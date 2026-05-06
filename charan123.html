@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | VelTech QP</title>
+    <style>
+        :root {
+            --bg: #f5f5f7;
+            --text: #1d1d1f;
+            --accent: #007aff;
+            --card: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .admin-card {
+            background: var(--card);
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        p {
+            color: #86868b;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: left;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-left: 4px;
+        }
+
+        input {
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid #d2d2d7;
+            background: #fbfbfd;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+        }
+
+        button {
+            margin-top: 1.5rem;
+            padding: 16px;
+            border-radius: 12px;
+            border: none;
+            background: var(--accent);
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1), background 0.2s;
+            width: 100%;
+        }
+
+        button:hover {
+            background: #0071e3;
+            transform: scale(1.02);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        button:disabled {
+            background: #d2d2d7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .status-msg {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            min-height: 1.2rem;
+        }
+
+        .success {
+            color: #34c759;
+        }
+
+        .error {
+            color: #ff3b30;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 2rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="admin-card">
+        <h1>Add Paper Request</h1>
+        <p>This will update the "Needed Papers" section on the website.</p>
+
+        <div class="input-group">
+            <label for="subjectName">Subject Name & Year</label>
+            <input type="text" id="subjectName" placeholder="e.g. Machine Learning (2024)" required>
+        </div>
+
+        <button id="addBtn">Push to Website</button>
+
+        <div id="status" class="status-msg"></div>
+
+        <a href="index.html" class="back-link">← Back to Portal</a>
+    </div>
+
+    <script>
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwRWcoOPg0zK0Ay9aIH5nd01ULBCEvcikYsyJZTZcjA1wb149qJ5ZV6uw0q8CuD-UTI2A/exec"; // PASTE YOUR URL HERE
+
+        const addBtn = document.getElementById('addBtn');
+        const subjectInput = document.getElementById('subjectName');
+        const status = document.getElementById('status');
+
+        addBtn.addEventListener('click', async () => {
+            const subject = subjectInput.value.trim();
+            if (!subject) return;
+
+            addBtn.disabled = true;
+            addBtn.innerText = "Processing...";
+            status.innerText = "";
+
+            try {
+                // We use no-cors because Apps Script redirects can be tricky
+                // For a real API feel, Apps Script needs specific headers, 
+                // but this is the simplest "Fire and Forget" method.
+                await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    cache: 'no-cache',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ type: 'request', subject: subject })
+                });
+
+                status.innerText = "✅ Sent to Google Sheets! Refresh site in a minute.";
+                status.className = "status-msg success";
+                subjectInput.value = "";
+            } catch (error) {
+                console.error(error);
+                status.innerText = "❌ Failed to send. Check console.";
+                status.className = "status-msg error";
+            } finally {
+                addBtn.disabled = false;
+                addBtn.innerText = "Push to Website";
+            }
+        });
+    </script>
+</body>
+
+</html>
